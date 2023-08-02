@@ -1,12 +1,16 @@
 using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Kata.Logic;
 
 public sealed partial class Account : IEquatable<Account>
 {
-    public string _id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string Id { get; set; }
     
-    public string Title { get; }
+    public string Title { get; set; }
 
     public Account(string title)
     {

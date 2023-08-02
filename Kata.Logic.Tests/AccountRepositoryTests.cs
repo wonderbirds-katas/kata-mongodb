@@ -29,9 +29,11 @@ public class AccountRepositoryTests
             repository.CreateAccount(accountTitle);
             var accounts = repository.Find();
 
-            // TODO: Why is the title of the returned object null?
             accounts.Should().HaveCount(1);
             accounts.First().Should().Be(new Account(accountTitle));
+            accounts.First().Id.Should().NotBeNull();
+            
+            // TODO: Document the necessity of BsonId and BsonRepresentation. Optional: Check when BsonId and BsonRepresentation can be skipped.
         }
         finally
         {
